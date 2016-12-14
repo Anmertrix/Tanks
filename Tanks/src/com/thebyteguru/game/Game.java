@@ -4,6 +4,7 @@ import java.awt.Graphics2D;
 
 import com.thebyteguru.IO.Input;
 import com.thebyteguru.display.Display;
+import com.thebyteguru.game.level.Level;
 import com.thebyteguru.graphics.TextureAtlas;
 import com.thebyteguru.utils.Time;
 
@@ -27,6 +28,7 @@ public class Game implements Runnable {
 	private Input				input;
 	private TextureAtlas		atlas;
 	private Player				player;
+	private Level lvl;
 
 	public Game() {
 		running = false;
@@ -36,6 +38,7 @@ public class Game implements Runnable {
 		Display.addInputListener(input);
 		atlas = new TextureAtlas(ATLAS_FILE_NAME);
 		player = new Player(300, 300, 2, 3, atlas);
+		lvl = new Level(atlas);
 	}
 
 	public synchronized void start() {
@@ -68,11 +71,14 @@ public class Game implements Runnable {
 
 	private void update() {
 		player.update(input);
+		lvl.update();
 	}
 
 	private void render() {
 		Display.clear();
+		lvl.render(graphics);
 		player.render(graphics);
+		lvl.renderGrass(graphics);
 		Display.swapBuffers();
 	}
 
