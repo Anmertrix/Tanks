@@ -54,6 +54,24 @@ public class Level {
 		
 	}
 	
+	public boolean isAllowedPoint(int newX, int newY) {
+		
+		for (int i=0; i < tileMap.length; i++) {
+			for (int j=0; j < tileMap[i].length; j++) {
+				Tile tile = tiles.get(TileType.fromNumeric(tileMap[i][j]));
+
+				
+				if (tile.type() == TileType.BRICK || tile.type() == TileType.METAL || tile.type() == TileType.WATER || tile.type() == TileType.ISE) {
+					if (j == newX && i == newY) {
+						return false;
+					}
+				}
+			}
+		}
+		
+		return true;
+	}
+	
 	public void render(Graphics2D g) {
 		for (int i=0; i < tileMap.length; i++) {
 			for (int j=0; j < tileMap[i].length; j++) {

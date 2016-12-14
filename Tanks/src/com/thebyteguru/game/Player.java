@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.thebyteguru.IO.Input;
+import com.thebyteguru.game.level.Level;
 import com.thebyteguru.graphics.Sprite;
 import com.thebyteguru.graphics.SpriteSheet;
 import com.thebyteguru.graphics.TextureAtlas;
@@ -40,12 +41,14 @@ public class Player extends Entity {
 	private Map<Heading, Sprite>	spriteMap;
 	private float					scale;
 	private float					speed;
+	private Level lvl;
 
-	public Player(float x, float y, float scale, float speed, TextureAtlas atlas) {
+	public Player(float x, float y, float scale, float speed, TextureAtlas atlas, Level lvl) {
 		super(EntityType.Player, x, y);
 
 		heading = Heading.NORTH;
 		spriteMap = new HashMap<Heading, Sprite>();
+		this.lvl = lvl;
 		this.scale = scale;
 		this.speed = speed;
 
@@ -63,21 +66,21 @@ public class Player extends Entity {
 		float newX = x;
 		float newY = y;
 
-		if (input.getKey(KeyEvent.VK_UP)) {
+		if (input.getKey(KeyEvent.VK_UP) && lvl.isAllowedPoint((int)Math.ceil(newX/16), (int)Math.ceil(newY/16) - 1)) {
 			newY -= speed;
 			heading = Heading.NORTH;
-		} else if (input.getKey(KeyEvent.VK_RIGHT)) {
+		} else if (input.getKey(KeyEvent.VK_RIGHT) && lvl.isAllowedPoint((int)Math.ceil(newX/16) + 1, (int)Math.ceil(newY/16))) {
 			newX += speed;
 			heading = Heading.EAST;
-		} else if (input.getKey(KeyEvent.VK_DOWN)) {
+		} else if (input.getKey(KeyEvent.VK_DOWN) && lvl.isAllowedPoint((int)Math.ceil(newX/16), (int)Math.ceil(newY/16) + 1)) {
 			newY += speed;
 			heading = Heading.SOUTH;
-		} else if (input.getKey(KeyEvent.VK_LEFT)) {
+		} else if (input.getKey(KeyEvent.VK_LEFT) && lvl.isAllowedPoint((int)Math.ceil(newX/16) - 1, (int)Math.ceil(newY/16))) {
 			newX -= speed;
 			heading = Heading.WEST;
 		}
 
-		if (newX < 0) {
+		if (newX < 0 ) {
 			newX = 0;
 		} else if (newX >= Game.WIDTH - SPRITE_SCALE * scale) {
 			newX = Game.WIDTH - SPRITE_SCALE * scale;
