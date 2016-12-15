@@ -58,7 +58,7 @@
   </enumeration>  
   <class id="8" language="java" name="com.thebyteguru.game.Player" project="Tanks" 
     file="/Tanks/src/com/thebyteguru/game/Player.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="353" y="204"/>    
+    <position height="-1" width="-1" x="410" y="242"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -146,7 +146,7 @@
   </class>  
   <enumeration id="20" language="java" name="com.thebyteguru.game.Player.Heading" project="Tanks" 
     file="/Tanks/src/com/thebyteguru/game/Player.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="376" y="496"/>    
+    <position height="-1" width="-1" x="386" y="520"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
